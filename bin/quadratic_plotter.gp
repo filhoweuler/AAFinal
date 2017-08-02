@@ -17,10 +17,10 @@ set fit quiet
 fit f(x) INPUT_FILE using 1:2 via a,b,c
 
 #Printar para o arquivo values o valor de f(2^32)
-#f32=2**32
-#set print "/home/weuler/ufu/ter/aa/final/values" append
-#print OUTPUT_FILE
-#print f(f32)
+f32=2**32
+set print "/home/weuler/ufu/ter/aa/final/values" append
+print OUTPUT_FILE
+print f(f32)
 
 set label 1 sprintf("f(x) = %.12fx^2 + %.12fx + %.12f",a,b,c) at graph 0.05,0.8 font "arialbd,10"
 

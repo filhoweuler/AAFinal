@@ -3,6 +3,7 @@
 using namespace std;
 
 int isDouble;
+int isString;
 
 int sToInt(string s) {
 	int nm = 0;
@@ -19,14 +20,17 @@ void getDescendent(int op, int k);
 
 void getRandom(int k);
 
+void getStrings(int k);
+
 int main (int argc, char *argv[]) {
 	srand(time(NULL));
 	isDouble = 0;
+	isString = 0;
 	string op1, op2, op3, op4;
 	op1 = argv[1];// Ordenado, nao ordenado ou aleatorio
 	op2 = argv[2];//1-6 indicando o tipo do vetor
 	op3 = argv[3];//k variando de 3 a 13 indicando o tamanho do vetor
-	op4 = argv[4];//0 - int 1 - double
+	op4 = argv[4];//0 - int 1 - double 2 - strings
 	
 	int o1, o2, o3, o4;	
 	o1 = sToInt(op1);
@@ -35,6 +39,11 @@ int main (int argc, char *argv[]) {
 	o4 = sToInt(op4);
 	
 	if (o4 == 1) isDouble = 1;
+	
+	if (o4 == 2) {
+		getStrings(o3);
+		return 0;
+	}
 	
 	switch (o1) {
 		case(1):
@@ -57,6 +66,7 @@ void getAscendent(int op, int k) {
     mt19937 eng(rd()); // seed the generator
 	
 	k = pow(2, k);
+	k++;
 	
 	printf("%d ", k);
 	
@@ -154,6 +164,7 @@ void getDescendent(int op, int k) {
     mt19937 eng(rd()); // seed the generator
 	
 	k = pow(2, k);
+	k++;
 	
 	printf("%d ", k);
 	
@@ -246,6 +257,7 @@ void getDescendent(int op, int k) {
 
 void getRandom(int k) {
 	k = pow(2, k);
+	k++;
 	printf("%d ", k);
 	if (isDouble == 0) {	
 		random_device rd; // obtain a random number from hardware
@@ -261,5 +273,20 @@ void getRandom(int k) {
 		}
 		printf("\n");
 	}
+}
+
+void getStrings(int k) {
+	k = pow(2, k);
+	random_device rd; // obtain a random number from hardware
+	mt19937 eng(rd()); // seed the generator
+	uniform_int_distribution<> distr(0, 25);
+	for (int i=0;i<k;i++) {
+		printf("%c", 'a' + distr(eng));
+	}
+	printf("\n");
+	for (int i=0;i<k;i++) {
+		printf("%c", 'a' + distr(eng));
+	}
+	printf("\n");	
 }
 
